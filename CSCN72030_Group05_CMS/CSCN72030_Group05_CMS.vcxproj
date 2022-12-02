@@ -128,9 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="seatWarmer_Temperature.cpp" />
+    <ClCompile Include="volumeAndEngineTime.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="seatwarmer_Temperature.h" />
+    <ClInclude Include="volumeAndEngineTime.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

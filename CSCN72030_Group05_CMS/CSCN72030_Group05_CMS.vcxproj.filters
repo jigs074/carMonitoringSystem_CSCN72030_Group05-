@@ -18,9 +18,15 @@
     <ClCompile Include="seatWarmer_Temperature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="volumeAndEngineTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="seatwarmer_Temperature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="volumeAndEngineTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
