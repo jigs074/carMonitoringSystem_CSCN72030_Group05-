@@ -35,5 +35,8 @@
     <ClInclude Include="Cruise-and-BackupCam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EngineTemp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

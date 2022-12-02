@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cruise-and-BackupCam.h" />
+    <ClInclude Include="EngineTemp.h" />
     <ClInclude Include="seatwarmer_Temperature.h" />
     <ClInclude Include="volumeAndEngineTime.h" />
   </ItemGroup>
