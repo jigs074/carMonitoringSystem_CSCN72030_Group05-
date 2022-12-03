@@ -876,22 +876,25 @@ namespace CppCLRWinFormsProject {
 		string line;
 		string engtimestring;
 		file.open("../Engine_Temp.txt");
-		engtimefile.open("../volumeLevels.txt");
+		engtimefile.open("../Engine_Temp.txt"); 
 		string filepath;
 		string rootpath;
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
-		while (!file.eof()) {
-			if (!getline(file, line)) {
-				break;
+		if (file.is_open()) {
+			while (!file.eof()) {
+				if (getline(file, line)) {
+					break;
+				}
 			}
 		}
 		
-		while (!engtimefile.eof()) {
-			if (!getline(engtimefile, engtimestring)) {
-				break;
+			while (!engtimefile.eof()) {
+				if (getline(engtimefile, engtimestring)) {
+					break;
+				}
 			}
-		}
+		
 		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
 		label2->Text = gcnew String(line.c_str());
 		label3->Text = gcnew String("0");
@@ -900,7 +903,7 @@ namespace CppCLRWinFormsProject {
 		//label3->Hide();
 		temptextbox->Hide();
 		manualtemplabel->Hide();
-	
+		//EngineTimeDisplay->Show();
 		label3->Hide();
 		
 	}
