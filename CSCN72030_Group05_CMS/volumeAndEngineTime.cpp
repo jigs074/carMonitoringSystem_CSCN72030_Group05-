@@ -34,7 +34,7 @@ string Volume::incrementVolume(string currentVolume)
 
 string Volume::decrementVolume(string currentVolume)
 {
-	string line;
+	string line, vol;
 	fstream file;
 	fstream temp;
 	file.open("../volumeLevels.txt", ios::in);
@@ -51,13 +51,17 @@ string Volume::decrementVolume(string currentVolume)
 			break;
 		}
 	}
-
+	temp.close();
+	temp.open("../temp.txt", ios::in);
 	while (!temp.eof())
 	{
 		getline(temp, line);
+		if (line.compare("") > 0) {
+			vol = line;
+		}
 	}
 
-	return line;
+	return vol;
 
 	file.close();
 	temp.close();
