@@ -1,10 +1,12 @@
 #pragma once
+
 #include <fstream>
 #include <string>
 #include "Marshal.h"
 #include "CSCN72030_Group05_CMS/Cruise-and-BackupCam.h"
 #include "CSCN72030_Group05_CMS/volumeAndEngineTime.h"
 #include "CSCN72030_Group05_CMS/EngineTemp.h"
+
 namespace CppCLRWinFormsProject {
 
 	using namespace System;
@@ -14,7 +16,9 @@ namespace CppCLRWinFormsProject {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace std;
-
+	using namespace IO;
+	
+	
 
 	/// <summary>
 	/// Summary for Form1
@@ -23,8 +27,9 @@ namespace CppCLRWinFormsProject {
 	{
 		int starttime, stoptime;
 	private: System::Windows::Forms::Label^ AvgTimeLabel;
+	private: System::Windows::Forms::GroupBox^ groupBox4;
 	private: System::Windows::Forms::Label^ AvgTimeDisplay;
-
+		 
 
 	public:
 		Form1(void)
@@ -46,13 +51,13 @@ namespace CppCLRWinFormsProject {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ volumeUp;
+
 	protected:
-	private: System::Windows::Forms::Label^ volumeDown;
-	private: System::Windows::Forms::Label^ currentVolume;
-	private: System::Windows::Forms::TextBox^ displayCurrentVolume;
-	private: System::Windows::Forms::Button^ volumeUpButton;
-	private: System::Windows::Forms::Button^ volumeDownButton;
+
+
+
+
+
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ ManualButton;
@@ -64,14 +69,14 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::Button^ RearButton;
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
-	private: System::Windows::Forms::GroupBox^ groupBox4;
+
 	private: System::Windows::Forms::Button^ VolUP;
 	private: System::Windows::Forms::Label^ VolLBL;
 	private: System::Windows::Forms::Button^ VolDWN;
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Button^ CruiseOff;
 	private: System::Windows::Forms::Button^ CruiseON;
-	private: System::Windows::Forms::Label^ label7;
+
 	public: System::Windows::Forms::GroupBox^ groupBox6;
 	private:
 	private:
@@ -135,12 +140,6 @@ namespace CppCLRWinFormsProject {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			this->volumeUp = (gcnew System::Windows::Forms::Label());
-			this->volumeDown = (gcnew System::Windows::Forms::Label());
-			this->currentVolume = (gcnew System::Windows::Forms::Label());
-			this->displayCurrentVolume = (gcnew System::Windows::Forms::TextBox());
-			this->volumeUpButton = (gcnew System::Windows::Forms::Button());
-			this->volumeDownButton = (gcnew System::Windows::Forms::Button());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->ManualButton = (gcnew System::Windows::Forms::Button());
@@ -154,8 +153,6 @@ namespace CppCLRWinFormsProject {
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
 			this->CruiseOff = (gcnew System::Windows::Forms::Button());
 			this->CruiseON = (gcnew System::Windows::Forms::Button());
-			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
-			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->VolUP = (gcnew System::Windows::Forms::Button());
 			this->VolLBL = (gcnew System::Windows::Forms::Label());
 			this->VolDWN = (gcnew System::Windows::Forms::Button());
@@ -192,69 +189,14 @@ namespace CppCLRWinFormsProject {
 			this->DurTimeDisplay = (gcnew System::Windows::Forms::Label());
 			this->AvgTimeLabel = (gcnew System::Windows::Forms::Label());
 			this->AvgTimeDisplay = (gcnew System::Windows::Forms::Label());
+			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
-			this->groupBox4->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->groupBox6->SuspendLayout();
 			this->groupBox7->SuspendLayout();
+			this->groupBox4->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// volumeUp
-			// 
-			this->volumeUp->AutoSize = true;
-			this->volumeUp->Location = System::Drawing::Point(23, 151);
-			this->volumeUp->Name = L"volumeUp";
-			this->volumeUp->Size = System::Drawing::Size(59, 13);
-			this->volumeUp->TabIndex = 0;
-			this->volumeUp->Text = L"Volume Up";
-			// 
-			// volumeDown
-			// 
-			this->volumeDown->AutoSize = true;
-			this->volumeDown->Location = System::Drawing::Point(23, 240);
-			this->volumeDown->Name = L"volumeDown";
-			this->volumeDown->Size = System::Drawing::Size(73, 13);
-			this->volumeDown->TabIndex = 1;
-			this->volumeDown->Text = L"Volume Down";
-			// 
-			// currentVolume
-			// 
-			this->currentVolume->AutoSize = true;
-			this->currentVolume->Location = System::Drawing::Point(437, 151);
-			this->currentVolume->Name = L"currentVolume";
-			this->currentVolume->Size = System::Drawing::Size(79, 13);
-			this->currentVolume->TabIndex = 2;
-			this->currentVolume->Text = L"Current Volume";
-			// 
-			// displayCurrentVolume
-			// 
-			this->displayCurrentVolume->Location = System::Drawing::Point(412, 184);
-			this->displayCurrentVolume->Name = L"displayCurrentVolume";
-			this->displayCurrentVolume->Size = System::Drawing::Size(109, 20);
-			this->displayCurrentVolume->TabIndex = 3;
-			this->displayCurrentVolume->Text = L"0";
-			this->displayCurrentVolume->TextChanged += gcnew System::EventHandler(this, &Form1::displayCurrentVolume_TextChanged);
-			// 
-			// volumeUpButton
-			// 
-			this->volumeUpButton->Location = System::Drawing::Point(26, 171);
-			this->volumeUpButton->Name = L"volumeUpButton";
-			this->volumeUpButton->Size = System::Drawing::Size(56, 19);
-			this->volumeUpButton->TabIndex = 4;
-			this->volumeUpButton->Text = L"Increase";
-			this->volumeUpButton->UseVisualStyleBackColor = true;
-			this->volumeUpButton->Click += gcnew System::EventHandler(this, &Form1::volumeUpButton_Click);
-			// 
-			// volumeDownButton
-			// 
-			this->volumeDownButton->Location = System::Drawing::Point(26, 260);
-			this->volumeDownButton->Name = L"volumeDownButton";
-			this->volumeDownButton->Size = System::Drawing::Size(56, 19);
-			this->volumeDownButton->TabIndex = 5;
-			this->volumeDownButton->Text = L"Decrease";
-			this->volumeDownButton->UseVisualStyleBackColor = true;
-			this->volumeDownButton->Click += gcnew System::EventHandler(this, &Form1::volumeDownButton_Click);
 			// 
 			// timer1
 			// 
@@ -379,31 +321,6 @@ namespace CppCLRWinFormsProject {
 			this->CruiseON->TabIndex = 0;
 			this->CruiseON->Text = L"ON";
 			this->CruiseON->UseVisualStyleBackColor = true;
-			// 
-			// groupBox4
-			// 
-			this->groupBox4->Controls->Add(this->label7);
-			this->groupBox4->Controls->Add(this->currentVolume);
-			this->groupBox4->Controls->Add(this->volumeUp);
-			this->groupBox4->Controls->Add(this->volumeDown);
-			this->groupBox4->Controls->Add(this->displayCurrentVolume);
-			this->groupBox4->Controls->Add(this->volumeUpButton);
-			this->groupBox4->Controls->Add(this->volumeDownButton);
-			this->groupBox4->Location = System::Drawing::Point(893, 36);
-			this->groupBox4->Name = L"groupBox4";
-			this->groupBox4->Size = System::Drawing::Size(274, 174);
-			this->groupBox4->TabIndex = 23;
-			this->groupBox4->TabStop = false;
-			this->groupBox4->Text = L"Jainam Module";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(20, 117);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(62, 13);
-			this->label7->TabIndex = 26;
-			this->label7->Text = L"Error Status";
 			// 
 			// VolUP
 			// 
@@ -678,7 +595,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// EngineONButton
 			// 
-			this->EngineONButton->Location = System::Drawing::Point(893, 524);
+			this->EngineONButton->Location = System::Drawing::Point(4, 38);
 			this->EngineONButton->Name = L"EngineONButton";
 			this->EngineONButton->Size = System::Drawing::Size(75, 23);
 			this->EngineONButton->TabIndex = 46;
@@ -688,7 +605,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// EngineOFFButton
 			// 
-			this->EngineOFFButton->Location = System::Drawing::Point(1008, 524);
+			this->EngineOFFButton->Location = System::Drawing::Point(119, 38);
 			this->EngineOFFButton->Name = L"EngineOFFButton";
 			this->EngineOFFButton->Size = System::Drawing::Size(75, 23);
 			this->EngineOFFButton->TabIndex = 47;
@@ -699,7 +616,7 @@ namespace CppCLRWinFormsProject {
 			// AlertLabel
 			// 
 			this->AlertLabel->AutoSize = true;
-			this->AlertLabel->Location = System::Drawing::Point(932, 582);
+			this->AlertLabel->Location = System::Drawing::Point(43, 96);
 			this->AlertLabel->Name = L"AlertLabel";
 			this->AlertLabel->Size = System::Drawing::Size(28, 13);
 			this->AlertLabel->TabIndex = 48;
@@ -746,19 +663,29 @@ namespace CppCLRWinFormsProject {
 			this->AvgTimeDisplay->TabIndex = 52;
 			this->AvgTimeDisplay->Text = L"0";
 			// 
+			// groupBox4
+			// 
+			this->groupBox4->Controls->Add(this->EngineOFFButton);
+			this->groupBox4->Controls->Add(this->EngineONButton);
+			this->groupBox4->Controls->Add(this->AlertLabel);
+			this->groupBox4->Location = System::Drawing::Point(893, 36);
+			this->groupBox4->Name = L"groupBox4";
+			this->groupBox4->Size = System::Drawing::Size(200, 174);
+			this->groupBox4->TabIndex = 53;
+			this->groupBox4->TabStop = false;
+			this->groupBox4->Text = L"groupBox4";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->ClientSize = System::Drawing::Size(1190, 734);
+			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->AvgTimeDisplay);
 			this->Controls->Add(this->AvgTimeLabel);
 			this->Controls->Add(this->DurTimeDisplay);
 			this->Controls->Add(this->DurTimeLabel);
-			this->Controls->Add(this->AlertLabel);
-			this->Controls->Add(this->EngineOFFButton);
-			this->Controls->Add(this->EngineONButton);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->VolLBL);
@@ -780,7 +707,6 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->CarTempLabel);
 			this->Controls->Add(this->CarTempDisplay);
 			this->Controls->Add(this->groupBox6);
-			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
@@ -791,20 +717,18 @@ namespace CppCLRWinFormsProject {
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load_1);
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox3->ResumeLayout(false);
-			this->groupBox4->ResumeLayout(false);
-			this->groupBox4->PerformLayout();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox6->ResumeLayout(false);
 			this->groupBox6->PerformLayout();
 			this->groupBox7->ResumeLayout(false);
+			this->groupBox4->ResumeLayout(false);
+			this->groupBox4->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void volumeUpButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-	}
+
 	private: System::Void displayCurrentVolume_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
 	}
@@ -951,20 +875,18 @@ namespace CppCLRWinFormsProject {
 		ifstream engtimefile;
 		string line;
 		string engtimestring;
-		file.open("Engine_Temp.txt");
-		engtimefile.open("EngTime.txt");
-		if (file.is_open()) {
-
-		}
+		file.open("../Engine_Temp.txt");
+		engtimefile.open("../volumeLevels.txt");
+		string filepath;
+		string rootpath;
+		//MarshalString(Directory::GetCurrentDirectory(),filepath);
+		//MarshalString(Directory::GetCurrentDirectory(),filepath);
 		while (!file.eof()) {
 			if (!getline(file, line)) {
 				break;
 			}
 		}
-
-		if (engtimefile.is_open()) {
-
-		}
+		
 		while (!engtimefile.eof()) {
 			if (!getline(engtimefile, engtimestring)) {
 				break;
@@ -978,7 +900,7 @@ namespace CppCLRWinFormsProject {
 		//label3->Hide();
 		temptextbox->Hide();
 		manualtemplabel->Hide();
-		groupBox4->Hide();
+	
 		label3->Hide();
 		
 	}
