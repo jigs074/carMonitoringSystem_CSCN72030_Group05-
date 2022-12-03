@@ -875,8 +875,8 @@ namespace CppCLRWinFormsProject {
 		fstream engtimefile;
 		string line;
 		string engtimestring;
-		file.open("../Engine_Temp.txt",fstream::in);
-		engtimefile.open("../Engine_Time.txt",fstream::out); 
+		file.open("../Engine_Temp.txt");
+		engtimefile.open("../Engine_Time.txt"); 
 		string filepath;
 		string rootpath;
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
