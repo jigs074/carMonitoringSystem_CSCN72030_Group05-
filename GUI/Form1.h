@@ -903,8 +903,9 @@ namespace CppCLRWinFormsProject {
 		cruiseControl cruise1;
 		seatWarmer seat1;
 		carTemperature ct;
+		//engineTime engt;
 		file.open("../Engine_Temp.txt");
-		engtimefile.open("../test.txt"); 
+		//engtimefile.open("../test.txt"); 
 		//seat1.setLevel("3");
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
@@ -915,6 +916,7 @@ namespace CppCLRWinFormsProject {
 				}
 			}
 		}
+		/*
 		if (engtimefile.is_open()) {
 			while (!engtimefile.eof()) {
 				if (getline(engtimefile, engtimestring)) {
@@ -922,11 +924,13 @@ namespace CppCLRWinFormsProject {
 				}
 			}
 		}
+		*/
 		
 		heat =seat1.setLevel("Low");
 		car = ct.autoTemperature();
 		cam = cam1.power(1);
 		cruise = cruise1.status(1);
+		//engtimestring = engt.getEngineTime();
 		//speed = cruise1.speed();
 		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
 		BackUpCameraDisplay->Text = gcnew String(cam.c_str()); 

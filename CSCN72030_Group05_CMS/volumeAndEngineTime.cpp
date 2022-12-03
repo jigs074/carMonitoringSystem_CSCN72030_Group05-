@@ -77,7 +77,7 @@ void engineTime::setEngineTime(string engineTime)
 		//float c_end = clock();
 		//engineTime = c_end - c_start; //This is the engine time usage
 	fstream file;
-	file.open("engineTime.txt", ios::out);
+	file.open("../engineTime.txt", ios::out);
 	if (file.is_open())
 	{
 		file << engineTime << endl;
@@ -89,7 +89,7 @@ string engineTime::getEngineTime()
 {
 	fstream file;
 	string line;
-	file.open("engineTime.txt", ios::in);
+	file.open("../engineTime.txt", ios::in);
 	while (!file.eof())
 	{
 		getline(file, line);
@@ -103,7 +103,7 @@ string engineTime::getAverageEngineTime()
 {
 	fstream file;
 	string line, result;
-	file.open("Duration.txt", ios::in);
+	file.open("../Duration.txt", ios::in);
 	int total = 0;
 	double average, sum = 0;
 	while (getline(file, line))
@@ -122,7 +122,7 @@ void engineTime::setaverageEngineTime(string duration)
 {
 	string line;
 	fstream file;
-	file.open("Duration.txt", ios::app);
+	file.open("../Duration.txt", ios::app);
 	file << duration << endl;
 	file.close();
 }
