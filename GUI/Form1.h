@@ -29,6 +29,8 @@ namespace CppCLRWinFormsProject {
 		int starttime, stoptime;
 	private: System::Windows::Forms::Label^ AvgTimeLabel;
 	private: System::Windows::Forms::GroupBox^ groupBox4;
+
+
 	private: System::Windows::Forms::Label^ AvgTimeDisplay;
 		 
 
@@ -95,7 +97,8 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ CruiseControlLabel;
-	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ CruiseControlDisplay;
+
 	private: System::Windows::Forms::Label^ SeatWarmerPositionLabel;
 	private: System::Windows::Forms::Label^ SeatWarmerPositonDisplay;
 	private: System::Windows::Forms::Label^ SeatWarmSettingLabel;
@@ -173,7 +176,7 @@ namespace CppCLRWinFormsProject {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->CruiseControlLabel = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->CruiseControlDisplay = (gcnew System::Windows::Forms::Label());
 			this->SeatWarmerPositionLabel = (gcnew System::Windows::Forms::Label());
 			this->SeatWarmerPositonDisplay = (gcnew System::Windows::Forms::Label());
 			this->SeatWarmSettingLabel = (gcnew System::Windows::Forms::Label());
@@ -317,6 +320,7 @@ namespace CppCLRWinFormsProject {
 			this->CruiseOff->TabIndex = 1;
 			this->CruiseOff->Text = L"OFF";
 			this->CruiseOff->UseVisualStyleBackColor = true;
+			this->CruiseOff->Click += gcnew System::EventHandler(this, &Form1::CruiseOff_Click);
 			// 
 			// CruiseON
 			// 
@@ -326,6 +330,7 @@ namespace CppCLRWinFormsProject {
 			this->CruiseON->TabIndex = 0;
 			this->CruiseON->Text = L"ON";
 			this->CruiseON->UseVisualStyleBackColor = true;
+			this->CruiseON->Click += gcnew System::EventHandler(this, &Form1::CruiseON_Click);
 			// 
 			// VolUP
 			// 
@@ -460,6 +465,7 @@ namespace CppCLRWinFormsProject {
 			this->BackCamOff->TabIndex = 1;
 			this->BackCamOff->Text = L"OFF";
 			this->BackCamOff->UseVisualStyleBackColor = true;
+			this->BackCamOff->Click += gcnew System::EventHandler(this, &Form1::BackCamOff_Click);
 			// 
 			// BackCamON
 			// 
@@ -469,11 +475,12 @@ namespace CppCLRWinFormsProject {
 			this->BackCamON->TabIndex = 0;
 			this->BackCamON->Text = L"ON";
 			this->BackCamON->UseVisualStyleBackColor = true;
+			this->BackCamON->Click += gcnew System::EventHandler(this, &Form1::BackCamON_Click);
 			// 
 			// BackUpCameraLabel
 			// 
 			this->BackUpCameraLabel->AutoSize = true;
-			this->BackUpCameraLabel->Location = System::Drawing::Point(22, 119);
+			this->BackUpCameraLabel->Location = System::Drawing::Point(22, 115);
 			this->BackUpCameraLabel->Name = L"BackUpCameraLabel";
 			this->BackUpCameraLabel->Size = System::Drawing::Size(98, 13);
 			this->BackUpCameraLabel->TabIndex = 33;
@@ -482,7 +489,7 @@ namespace CppCLRWinFormsProject {
 			// BackUpCameraDisplay
 			// 
 			this->BackUpCameraDisplay->AutoSize = true;
-			this->BackUpCameraDisplay->Location = System::Drawing::Point(24, 143);
+			this->BackUpCameraDisplay->Location = System::Drawing::Point(24, 139);
 			this->BackUpCameraDisplay->Name = L"BackUpCameraDisplay";
 			this->BackUpCameraDisplay->Size = System::Drawing::Size(35, 13);
 			this->BackUpCameraDisplay->TabIndex = 34;
@@ -511,20 +518,20 @@ namespace CppCLRWinFormsProject {
 			// CruiseControlLabel
 			// 
 			this->CruiseControlLabel->AutoSize = true;
-			this->CruiseControlLabel->Location = System::Drawing::Point(22, 36);
+			this->CruiseControlLabel->Location = System::Drawing::Point(22, 34);
 			this->CruiseControlLabel->Name = L"CruiseControlLabel";
 			this->CruiseControlLabel->Size = System::Drawing::Size(105, 13);
 			this->CruiseControlLabel->TabIndex = 36;
 			this->CruiseControlLabel->Text = L"CRUISE CONTROL ";
 			// 
-			// label4
+			// CruiseControlDisplay
 			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(22, 64);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(35, 13);
-			this->label4->TabIndex = 37;
-			this->label4->Text = L"NULL";
+			this->CruiseControlDisplay->AutoSize = true;
+			this->CruiseControlDisplay->Location = System::Drawing::Point(22, 62);
+			this->CruiseControlDisplay->Name = L"CruiseControlDisplay";
+			this->CruiseControlDisplay->Size = System::Drawing::Size(35, 13);
+			this->CruiseControlDisplay->TabIndex = 37;
+			this->CruiseControlDisplay->Text = L"NULL";
 			// 
 			// SeatWarmerPositionLabel
 			// 
@@ -700,7 +707,7 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->SeatWarmSettingLabel);
 			this->Controls->Add(this->SeatWarmerPositonDisplay);
 			this->Controls->Add(this->SeatWarmerPositionLabel);
-			this->Controls->Add(this->label4);
+			this->Controls->Add(this->CruiseControlDisplay);
 			this->Controls->Add(this->CruiseControlLabel);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -772,23 +779,31 @@ namespace CppCLRWinFormsProject {
 
 	private: System::Void VolUP_Click(System::Object^ sender, System::EventArgs^ e) {
 		int num = 0;
-		string l;
-		MarshalString(VolLBL->Text, l);
-		num = stoi(l);
-		num++;
-		l = to_string(num);
-		VolLBL->Text = gcnew String(l.c_str());
+		string curVol,vol;
+		Volume v;
+		MarshalString(VolLBL->Text, curVol);
+		//num = stoi(l);
+		//num++;
+		//l = to_string(num);
+		vol = v.incrementVolume(curVol);
+		//VolLBL->Text = gcnew String(vol.c_str());
+		if (vol.compare("") > 0) {
+			VolLBL->Text = gcnew String(vol.c_str());
+		}
 	}
 	private: System::Void VolDWN_Click(System::Object^ sender, System::EventArgs^ e) {
 		int num = 0;
-		string l;
-		MarshalString(VolLBL->Text, l);
-		num = stoi(l);
-		if (num > 0) {
-			num--;
-			l = to_string(num);
-			VolLBL->Text = gcnew String(l.c_str());
+		string curVol, vol;
+		Volume v;
+		MarshalString(VolLBL->Text, curVol);
+		//num = stoi(l);
+		//num++;
+		//l = to_string(num);
+		vol = v.decrementVolume(curVol);
+		if (vol.compare("")>0) {
+			VolLBL->Text = gcnew String(vol.c_str());
 		}
+		//VolLBL->Text = gcnew String(vol.c_str());
 		
 	}
 
@@ -882,9 +897,10 @@ namespace CppCLRWinFormsProject {
 	private: System::Void Form1_Load_1(System::Object^ sender, System::EventArgs^ e) {
 		fstream file,bckcamfile;
 		fstream engtimefile;
-		string line,t,w,c;
+		string line,cam,heat,car,cruise, speed;
 		string engtimestring;
 		backupCamera cam1;
+		cruiseControl cruise1;
 		seatWarmer seat1;
 		carTemperature ct;
 		file.open("../Engine_Temp.txt");
@@ -906,19 +922,17 @@ namespace CppCLRWinFormsProject {
 				}
 			}
 		}
-		if (bckcamfile.is_open()) {
-			while (!bckcamfile.eof()) {
-				if (getline(bckcamfile, t)) {
-					break;
-				}
-			}
-		}
-		w =seat1.setLevel("Low");
-		c = ct.autoTemperature();
-		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
-		BackUpCameraDisplay->Text = gcnew String(t.c_str()); 
 		
-		CarTempDisplay->Text = gcnew String(c.c_str());
+		heat =seat1.setLevel("Low");
+		car = ct.autoTemperature();
+		cam = cam1.power(1);
+		cruise = cruise1.status(1);
+		//speed = cruise1.speed();
+		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
+		BackUpCameraDisplay->Text = gcnew String(cam.c_str()); 
+		//SpeedDisplay->Text = gcnew String(speed.c_str());
+		CarTempDisplay->Text = gcnew String(car.c_str());
+		CruiseControlDisplay->Text = gcnew String(cruise.c_str());
 		SeatWarmerPositonDisplay->Text = gcnew String("Front");
 		SeatWarmerSettingDisplay->Text = gcnew String("Low");
 		label2->Text = gcnew String(line.c_str());
@@ -967,6 +981,31 @@ private: System::Void HighButton_Click(System::Object^ sender, System::EventArgs
 }
 
 
+private: System::Void BackCamON_Click(System::Object^ sender, System::EventArgs^ e) {
+	backupCamera camera;
+	string campow;
+	campow = camera.power(1);
+	BackUpCameraDisplay->Text = gcnew String(campow.c_str());
+}
+private: System::Void BackCamOff_Click(System::Object^ sender, System::EventArgs^ e) {
+	backupCamera camera;
+	string campow;
+	campow = camera.power(2);
+	BackUpCameraDisplay->Text = gcnew String(campow.c_str());
+}
+private: System::Void CruiseON_Click(System::Object^ sender, System::EventArgs^ e) {
+	string cruise;
+	cruiseControl cruise1;
+	cruise = cruise1.status(1); 
+	CruiseControlDisplay->Text = gcnew String(cruise.c_str()); 
+}
+private: System::Void CruiseOff_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	string cruise;
+	cruiseControl cruise1;
+	cruise = cruise1.status(2);
+	CruiseControlDisplay->Text = gcnew String(cruise.c_str());
+}
 };
 
 }

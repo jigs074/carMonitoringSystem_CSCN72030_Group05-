@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="..\CSCN72030_Group05_CMS\Cruise-and-BackupCam.h" />
     <ClInclude Include="..\CSCN72030_Group05_CMS\seatwarmer_Temperature.h" />
+    <ClInclude Include="..\CSCN72030_Group05_CMS\volumeAndEngineTime.h" />
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="..\CSCN72030_Group05_CMS\Cruise-and-BackupCam.cpp" />
     <ClCompile Include="..\CSCN72030_Group05_CMS\seatWarmer_Temperature.cpp" />
+    <ClCompile Include="..\CSCN72030_Group05_CMS\volumeAndEngineTime.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CppCLR_WinFormsProject.cpp" />
     <ClCompile Include="Form1.cpp" />
