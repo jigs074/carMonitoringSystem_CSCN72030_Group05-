@@ -32,6 +32,12 @@
     <ClInclude Include="Marshal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\CSCN72030_Group05_CMS\Cruise-and-BackupCam.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CSCN72030_Group05_CMS\seatwarmer_Temperature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinFormsProject.cpp">
@@ -47,6 +53,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Marshal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CSCN72030_Group05_CMS\Cruise-and-BackupCam.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CSCN72030_Group05_CMS\seatWarmer_Temperature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

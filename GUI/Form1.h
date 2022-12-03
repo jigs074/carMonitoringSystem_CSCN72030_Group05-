@@ -6,6 +6,7 @@
 #include "CSCN72030_Group05_CMS/Cruise-and-BackupCam.h"
 #include "CSCN72030_Group05_CMS/volumeAndEngineTime.h"
 #include "CSCN72030_Group05_CMS/EngineTemp.h"
+#include "pch.h"
 
 namespace CppCLRWinFormsProject {
 
@@ -231,7 +232,7 @@ namespace CppCLRWinFormsProject {
 			this->FrontButton->TabIndex = 15;
 			this->FrontButton->Text = L"Front";
 			this->FrontButton->UseVisualStyleBackColor = true;
-			this->FrontButton->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
+			this->FrontButton->Click += gcnew System::EventHandler(this, &Form1::FrontButton_Click);
 			// 
 			// LowButton
 			// 
@@ -241,6 +242,7 @@ namespace CppCLRWinFormsProject {
 			this->LowButton->TabIndex = 16;
 			this->LowButton->Text = L"Low";
 			this->LowButton->UseVisualStyleBackColor = true;
+			this->LowButton->Click += gcnew System::EventHandler(this, &Form1::LowButton_Click);
 			// 
 			// MedButton
 			// 
@@ -250,6 +252,7 @@ namespace CppCLRWinFormsProject {
 			this->MedButton->TabIndex = 17;
 			this->MedButton->Text = L"Medium";
 			this->MedButton->UseVisualStyleBackColor = true;
+			this->MedButton->Click += gcnew System::EventHandler(this, &Form1::MedButton_Click);
 			// 
 			// HighButton
 			// 
@@ -259,6 +262,7 @@ namespace CppCLRWinFormsProject {
 			this->HighButton->TabIndex = 18;
 			this->HighButton->Text = L"High";
 			this->HighButton->UseVisualStyleBackColor = true;
+			this->HighButton->Click += gcnew System::EventHandler(this, &Form1::HighButton_Click);
 			// 
 			// AutoButton
 			// 
@@ -278,6 +282,7 @@ namespace CppCLRWinFormsProject {
 			this->RearButton->TabIndex = 20;
 			this->RearButton->Text = L"Rear";
 			this->RearButton->UseVisualStyleBackColor = true;
+			this->RearButton->Click += gcnew System::EventHandler(this, &Form1::RearButton_Click);
 			// 
 			// groupBox2
 			// 
@@ -788,10 +793,14 @@ namespace CppCLRWinFormsProject {
 	}
 
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+		carTemperature ct;
+		string c;
 		temptextbox->Hide();
+		c = ct.autoTemperature();
+		CarTempDisplay->Text = gcnew String(c.c_str());
+
 	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 
 	private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -871,14 +880,16 @@ namespace CppCLRWinFormsProject {
 	}
 
 	private: System::Void Form1_Load_1(System::Object^ sender, System::EventArgs^ e) {
-		fstream file;
+		fstream file,bckcamfile;
 		fstream engtimefile;
-		string line;
+		string line,t,w,c;
 		string engtimestring;
+		backupCamera cam1;
+		seatWarmer seat1;
+		carTemperature ct;
 		file.open("../Engine_Temp.txt");
 		engtimefile.open("../test.txt"); 
-		string filepath;
-		string rootpath;
+		//seat1.setLevel("3");
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
 		if (file.is_open()) {
@@ -895,12 +906,25 @@ namespace CppCLRWinFormsProject {
 				}
 			}
 		}
-		
+		if (bckcamfile.is_open()) {
+			while (!bckcamfile.eof()) {
+				if (getline(bckcamfile, t)) {
+					break;
+				}
+			}
+		}
+		w =seat1.setLevel("Low");
+		c = ct.autoTemperature();
 		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
+		BackUpCameraDisplay->Text = gcnew String(t.c_str()); 
+		
+		CarTempDisplay->Text = gcnew String(c.c_str());
+		SeatWarmerPositonDisplay->Text = gcnew String("Front");
+		SeatWarmerSettingDisplay->Text = gcnew String("Low");
 		label2->Text = gcnew String(line.c_str());
 		label3->Text = gcnew String("0");
 		VolLBL->Text = gcnew String("0");
-		CarTempDisplay->Text = gcnew String("0");
+		//CarTempDisplay->Text = gcnew String("0");
 		//label3->Hide();
 		temptextbox->Hide();
 		manualtemplabel->Hide();
@@ -908,6 +932,41 @@ namespace CppCLRWinFormsProject {
 		label3->Hide();
 		
 	}
-	};
+	
+
+
+private: System::Void FrontButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	SeatWarmerPositonDisplay->Text = gcnew String("Front");
+}
+private: System::Void RearButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	SeatWarmerPositonDisplay->Text = gcnew String("Rear");
+}
+private: System::Void LowButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	SeatWarmerSettingDisplay->Text = gcnew String("Low");
+	string setting, tempdisplay;
+	MarshalString(SeatWarmerSettingDisplay->Text, setting);
+	seatWarmer seat;
+	tempdisplay = seat.setLevel(setting);
+	SeatWarmerTempDisplay->Text = gcnew String(tempdisplay.c_str());
+}
+private: System::Void MedButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	SeatWarmerSettingDisplay->Text = gcnew String("Medium");
+	string setting, tempdisplay;
+	MarshalString(SeatWarmerSettingDisplay->Text, setting);
+	seatWarmer seat;
+	tempdisplay = seat.setLevel(setting);
+	SeatWarmerTempDisplay->Text = gcnew String(tempdisplay.c_str());
+}
+private: System::Void HighButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	SeatWarmerSettingDisplay->Text = gcnew String("High");
+	string setting, tempdisplay;
+	MarshalString(SeatWarmerSettingDisplay->Text, setting);
+	seatWarmer seat;
+	tempdisplay = seat.setLevel(setting);
+	SeatWarmerTempDisplay->Text = gcnew String(tempdisplay.c_str());
+}
+
+
+};
 
 }
