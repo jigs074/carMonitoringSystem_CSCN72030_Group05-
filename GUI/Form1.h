@@ -903,7 +903,7 @@ namespace CppCLRWinFormsProject {
 		cruiseControl cruise1;
 		seatWarmer seat1;
 		carTemperature ct;
-		//engineTime engt;
+		engineTime engt;
 		file.open("../Engine_Temp.txt");
 		//engtimefile.open("../test.txt"); 
 		//seat1.setLevel("3");
@@ -930,7 +930,7 @@ namespace CppCLRWinFormsProject {
 		car = ct.autoTemperature();
 		cam = cam1.power(1);
 		cruise = cruise1.status(1);
-		//engtimestring = engt.getEngineTime();
+		engtimestring = engt.getEngineTime();
 		//speed = cruise1.speed();
 		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
 		BackUpCameraDisplay->Text = gcnew String(cam.c_str()); 
