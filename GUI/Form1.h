@@ -871,12 +871,12 @@ namespace CppCLRWinFormsProject {
 	}
 
 	private: System::Void Form1_Load_1(System::Object^ sender, System::EventArgs^ e) {
-		ifstream file;
-		ifstream engtimefile;
+		fstream file;
+		fstream engtimefile;
 		string line;
 		string engtimestring;
-		file.open("../Engine_Temp.txt");
-		engtimefile.open("../Engine_Temp.txt"); 
+		file.open("../Engine_Temp.txt",fstream::in);
+		engtimefile.open("../Engine_Time.txt",fstream::out); 
 		string filepath;
 		string rootpath;
 		//MarshalString(Directory::GetCurrentDirectory(),filepath);
@@ -888,12 +888,13 @@ namespace CppCLRWinFormsProject {
 				}
 			}
 		}
-		
+		if (engtimefile.is_open()) {
 			while (!engtimefile.eof()) {
 				if (getline(engtimefile, engtimestring)) {
 					break;
 				}
 			}
+		}
 		
 		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
 		label2->Text = gcnew String(line.c_str());
