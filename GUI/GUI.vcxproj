@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CSCN72030_Group05_CMS\Cruise-and-BackupCam.h" />
+    <ClInclude Include="..\CSCN72030_Group05_CMS\EngineTemp.h" />
     <ClInclude Include="..\CSCN72030_Group05_CMS\seatwarmer_Temperature.h" />
     <ClInclude Include="..\CSCN72030_Group05_CMS\volumeAndEngineTime.h" />
     <ClInclude Include="Form1.h">

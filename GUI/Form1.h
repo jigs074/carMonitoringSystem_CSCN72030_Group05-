@@ -29,6 +29,8 @@ namespace CppCLRWinFormsProject {
 		int starttime, stoptime;
 	private: System::Windows::Forms::Label^ AvgTimeLabel;
 	private: System::Windows::Forms::GroupBox^ groupBox4;
+	private: System::Windows::Forms::Label^ EngineTempAlertDisplay;
+
 
 
 	private: System::Windows::Forms::Label^ AvgTimeDisplay;
@@ -62,7 +64,8 @@ namespace CppCLRWinFormsProject {
 
 
 	private: System::Windows::Forms::Timer^ timer1;
-	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ TimerDisplay;
+
 	private: System::Windows::Forms::Button^ ManualButton;
 	private: System::Windows::Forms::Button^ FrontButton;
 	private: System::Windows::Forms::Button^ LowButton;
@@ -94,8 +97,10 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::Button^ BackCamON;
 	private: System::Windows::Forms::Label^ BackUpCameraLabel;
 	private: System::Windows::Forms::Label^ BackUpCameraDisplay;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ EngineTempDisplay;
+	private: System::Windows::Forms::Label^ EngineTempLabel;
+
+
 	private: System::Windows::Forms::Label^ CruiseControlLabel;
 	private: System::Windows::Forms::Label^ CruiseControlDisplay;
 
@@ -145,7 +150,7 @@ namespace CppCLRWinFormsProject {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->TimerDisplay = (gcnew System::Windows::Forms::Label());
 			this->ManualButton = (gcnew System::Windows::Forms::Button());
 			this->FrontButton = (gcnew System::Windows::Forms::Button());
 			this->LowButton = (gcnew System::Windows::Forms::Button());
@@ -173,8 +178,8 @@ namespace CppCLRWinFormsProject {
 			this->BackCamON = (gcnew System::Windows::Forms::Button());
 			this->BackUpCameraLabel = (gcnew System::Windows::Forms::Label());
 			this->BackUpCameraDisplay = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->EngineTempDisplay = (gcnew System::Windows::Forms::Label());
+			this->EngineTempLabel = (gcnew System::Windows::Forms::Label());
 			this->CruiseControlLabel = (gcnew System::Windows::Forms::Label());
 			this->CruiseControlDisplay = (gcnew System::Windows::Forms::Label());
 			this->SeatWarmerPositionLabel = (gcnew System::Windows::Forms::Label());
@@ -194,6 +199,7 @@ namespace CppCLRWinFormsProject {
 			this->AvgTimeLabel = (gcnew System::Windows::Forms::Label());
 			this->AvgTimeDisplay = (gcnew System::Windows::Forms::Label());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
+			this->EngineTempAlertDisplay = (gcnew System::Windows::Forms::Label());
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
 			this->groupBox1->SuspendLayout();
@@ -207,15 +213,15 @@ namespace CppCLRWinFormsProject {
 			this->timer1->Interval = 1000;
 			this->timer1->Tick += gcnew System::EventHandler(this, &Form1::timer1_Tick);
 			// 
-			// label3
+			// TimerDisplay
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(597, 540);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(33, 13);
-			this->label3->TabIndex = 8;
-			this->label3->Text = L"Timer";
-			this->label3->Click += gcnew System::EventHandler(this, &Form1::label3_Click);
+			this->TimerDisplay->AutoSize = true;
+			this->TimerDisplay->Location = System::Drawing::Point(597, 540);
+			this->TimerDisplay->Name = L"TimerDisplay";
+			this->TimerDisplay->Size = System::Drawing::Size(33, 13);
+			this->TimerDisplay->TabIndex = 8;
+			this->TimerDisplay->Text = L"Timer";
+			this->TimerDisplay->Click += gcnew System::EventHandler(this, &Form1::label3_Click);
 			// 
 			// ManualButton
 			// 
@@ -365,12 +371,12 @@ namespace CppCLRWinFormsProject {
 			// 
 			this->groupBox1->Controls->Add(this->VolDWN);
 			this->groupBox1->Controls->Add(this->VolUP);
-			this->groupBox1->Location = System::Drawing::Point(600, 36);
+			this->groupBox1->Location = System::Drawing::Point(590, 36);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(168, 174);
 			this->groupBox1->TabIndex = 13;
 			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Test Volume Control";
+			this->groupBox1->Text = L"Volume Control";
 			// 
 			// groupBox6
 			// 
@@ -402,7 +408,7 @@ namespace CppCLRWinFormsProject {
 			// temptextbox
 			// 
 			this->temptextbox->Location = System::Drawing::Point(28, 85);
-			this->temptextbox->MaxLength = 5;
+			this->temptextbox->MaxLength = 2;
 			this->temptextbox->Name = L"temptextbox";
 			this->temptextbox->Size = System::Drawing::Size(100, 20);
 			this->temptextbox->TabIndex = 20;
@@ -495,25 +501,25 @@ namespace CppCLRWinFormsProject {
 			this->BackUpCameraDisplay->TabIndex = 34;
 			this->BackUpCameraDisplay->Text = L"NULL";
 			// 
-			// label2
+			// EngineTempDisplay
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(24, 563);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(13, 13);
-			this->label2->TabIndex = 7;
-			this->label2->Text = L"0";
-			this->label2->Click += gcnew System::EventHandler(this, &Form1::label2_Click);
+			this->EngineTempDisplay->AutoSize = true;
+			this->EngineTempDisplay->Location = System::Drawing::Point(24, 563);
+			this->EngineTempDisplay->Name = L"EngineTempDisplay";
+			this->EngineTempDisplay->Size = System::Drawing::Size(13, 13);
+			this->EngineTempDisplay->TabIndex = 7;
+			this->EngineTempDisplay->Text = L"0";
+			this->EngineTempDisplay->Click += gcnew System::EventHandler(this, &Form1::label2_Click);
 			// 
-			// label1
+			// EngineTempLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(22, 540);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(181, 13);
-			this->label1->TabIndex = 6;
-			this->label1->Text = L"ENGINE TEMPERATURE CELSIUS";
-			this->label1->Click += gcnew System::EventHandler(this, &Form1::label1_Click);
+			this->EngineTempLabel->AutoSize = true;
+			this->EngineTempLabel->Location = System::Drawing::Point(22, 540);
+			this->EngineTempLabel->Name = L"EngineTempLabel";
+			this->EngineTempLabel->Size = System::Drawing::Size(181, 13);
+			this->EngineTempLabel->TabIndex = 6;
+			this->EngineTempLabel->Text = L"ENGINE TEMPERATURE CELSIUS";
+			this->EngineTempLabel->Click += gcnew System::EventHandler(this, &Form1::label1_Click);
 			// 
 			// CruiseControlLabel
 			// 
@@ -685,7 +691,16 @@ namespace CppCLRWinFormsProject {
 			this->groupBox4->Size = System::Drawing::Size(200, 174);
 			this->groupBox4->TabIndex = 53;
 			this->groupBox4->TabStop = false;
-			this->groupBox4->Text = L"groupBox4";
+			this->groupBox4->Text = L"Engine";
+			// 
+			// EngineTempAlertDisplay
+			// 
+			this->EngineTempAlertDisplay->AutoSize = true;
+			this->EngineTempAlertDisplay->Location = System::Drawing::Point(24, 588);
+			this->EngineTempAlertDisplay->Name = L"EngineTempAlertDisplay";
+			this->EngineTempAlertDisplay->Size = System::Drawing::Size(35, 13);
+			this->EngineTempAlertDisplay->TabIndex = 54;
+			this->EngineTempAlertDisplay->Text = L"NULL";
 			// 
 			// Form1
 			// 
@@ -693,6 +708,7 @@ namespace CppCLRWinFormsProject {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->ClientSize = System::Drawing::Size(1190, 734);
+			this->Controls->Add(this->EngineTempAlertDisplay);
 			this->Controls->Add(this->groupBox4);
 			this->Controls->Add(this->AvgTimeDisplay);
 			this->Controls->Add(this->AvgTimeLabel);
@@ -709,8 +725,8 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->SeatWarmerPositionLabel);
 			this->Controls->Add(this->CruiseControlDisplay);
 			this->Controls->Add(this->CruiseControlLabel);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->EngineTempDisplay);
+			this->Controls->Add(this->EngineTempLabel);
 			this->Controls->Add(this->BackUpCameraDisplay);
 			this->Controls->Add(this->BackUpCameraLabel);
 			this->Controls->Add(this->groupBox7);
@@ -722,7 +738,7 @@ namespace CppCLRWinFormsProject {
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
-			this->Controls->Add(this->label3);
+			this->Controls->Add(this->TimerDisplay);
 			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"Form1";
 			this->Text = L"Form1";
@@ -754,21 +770,36 @@ namespace CppCLRWinFormsProject {
 	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
 		string l;
 		string engtmp;
+		ENGINETEMP eng1;
 		int num = 0;
-		int temp = 0;
-		MarshalString(label2->Text, engtmp);
-		MarshalString(label3->Text, l);
-		num = stoi(l);
+		int time = 0;
+		MarshalString(EngineTempDisplay->Text, engtmp);
+		num = stoi(engtmp);
+		eng1.tempchange(num);
+		engtmp = to_string(eng1.getengtemp());
+		//EngineTempDisplay->Text = gcnew String(engtmp.c_str());
+		MarshalString(TimerDisplay->Text, l);
+		
+		time = stoi(l);
+		time++;
+		l = to_string(time);
+		TimerDisplay->Text = gcnew String(l.c_str());
+		EngineTempDisplay->Text = gcnew String(engtmp.c_str());
 
-		num++;
-		l = to_string(num);
-		label3->Text = gcnew String(l.c_str());
-		if (num % 10 == 0) {
-			temp = stoi(engtmp);
-			temp++;
-			engtmp = to_string(temp);
-			label2->Text = gcnew String(engtmp.c_str());
+		if (eng1.getengtemp() > 215){
+			EngineTempAlertDisplay->Show();
+			EngineTempAlertDisplay->Text= gcnew String("ENGINE TOO HOT!");
+			EngineOFFButton->PerformClick();
+			//EngineTempAlertDisplay->Hide();
 		}
+
+		//if (time % 10 == 0) {
+			//temp = stoi(engtmp);
+			//temp++;
+			//engtmp = to_string(temp);
+			//EngineTempDisplay->Text = gcnew String(engtmp.c_str());
+		//}
+		
 		//open file write to file
 		//int num = label2->Text
 		//label2->Text = gcnew String(num.ToString());
@@ -865,6 +896,9 @@ namespace CppCLRWinFormsProject {
 	private: System::Void EngineONButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		timer1->Enabled = true;
 		timer2->Enabled = true;
+		EngineOFFButton->Enabled = true;
+		EngineONButton->Enabled = false;
+		EngineTempAlertDisplay->Hide();
 		string engtime;
 		MarshalString(EngineTimeDisplay->Text, engtime);
 		starttime = stoi(engtime);
@@ -872,6 +906,8 @@ namespace CppCLRWinFormsProject {
 	private: System::Void EngineOFFButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		timer1->Enabled = false;
 		timer2->Enabled = false;
+		EngineONButton->Enabled = true;
+		EngineOFFButton->Enabled = false;
 		string engtime;
 		string durtime,avgtime,alert;	
 		engineTime engt;
@@ -891,6 +927,7 @@ namespace CppCLRWinFormsProject {
 		if (engt.alertEngineTime(avgtime) == 1) {
 			AlertLabel->Text = gcnew String("Engine Alert!");
 		}
+		EngineOFFButton->Enabled = false;
 	}
 	private: System::Void timer2_Tick_1(System::Object^ sender, System::EventArgs^ e) {
 		string engtime;
@@ -918,13 +955,15 @@ namespace CppCLRWinFormsProject {
 	private: System::Void Form1_Load_1(System::Object^ sender, System::EventArgs^ e) {
 		fstream file,bckcamfile;
 		fstream engtimefile;
-		string line,cam,heat,car,cruise, speed;
+		string line,cam,heat,car,cruise, speed,engtempstring;
 		string engtimestring;
 		backupCamera cam1;
 		cruiseControl cruise1;
 		seatWarmer seat1;
 		carTemperature ct;
 		engineTime engt;
+		ENGINETEMP eng1;
+		int engtemp;
 		file.open("../Engine_Temp.txt");
 		//engtimefile.open("../test.txt"); 
 		//seat1.setLevel("3");
@@ -952,35 +991,51 @@ namespace CppCLRWinFormsProject {
 		cam = cam1.power(1);
 		cruise = cruise1.status(1);
 		engtimestring = engt.getEngineTime();
-		//speed = cruise1.speed();
+		engtemp = eng1.starttemp();
+		engtempstring = to_string(engtemp);
+		
+		EngineTempDisplay->Text = gcnew String(engtempstring.c_str());
 		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
-		BackUpCameraDisplay->Text = gcnew String(cam.c_str()); 
-		//SpeedDisplay->Text = gcnew String(speed.c_str());
+		//BackUpCameraDisplay->Text = gcnew String(cam.c_str()); 
 		CarTempDisplay->Text = gcnew String(car.c_str());
-		CruiseControlDisplay->Text = gcnew String(cruise.c_str());
-		SeatWarmerPositonDisplay->Text = gcnew String("Front");
-		SeatWarmerSettingDisplay->Text = gcnew String("Low");
-		label2->Text = gcnew String(line.c_str());
-		label3->Text = gcnew String("0");
+	//	CruiseControlDisplay->Text = gcnew String(cruise.c_str());
+		//SeatWarmerPositonDisplay->Text = gcnew String("Front");
+		//SeatWarmerSettingDisplay->Text = gcnew String("Low");
+		//EngineTempDisplay->Text = gcnew String(line.c_str());
+		TimerDisplay->Text = gcnew String("0");
 		VolLBL->Text = gcnew String("0");
 		//CarTempDisplay->Text = gcnew String("0");
 		//label3->Hide();
 		temptextbox->Hide();
 		manualtemplabel->Hide();
 		//EngineTimeDisplay->Show();
-		label3->Hide();
-		
+		TimerDisplay->Text = gcnew String("0");
+		EngineTempAlertDisplay->Hide();
+		//TimerDisplay->Hide();
+		//EngineOFFButton->Enabled = false;
+		//EngineONButton->PerformClick();
+		BackCamON->PerformClick();
+		CruiseON->PerformClick();
+		LowButton->PerformClick();
+		FrontButton->PerformClick();
 	}
 	
 
 
 private: System::Void FrontButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	FrontButton->Enabled = false;
+	RearButton->Enabled = true;
 	SeatWarmerPositonDisplay->Text = gcnew String("Front");
 }
 private: System::Void RearButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	FrontButton->Enabled = true;
+	RearButton->Enabled = false;
 	SeatWarmerPositonDisplay->Text = gcnew String("Rear");
 }
 private: System::Void LowButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	LowButton->Enabled = false;
+	MedButton->Enabled = true;
+	HighButton->Enabled = true;
 	SeatWarmerSettingDisplay->Text = gcnew String("Low");
 	string setting, tempdisplay;
 	MarshalString(SeatWarmerSettingDisplay->Text, setting);
@@ -989,6 +1044,9 @@ private: System::Void LowButton_Click(System::Object^ sender, System::EventArgs^
 	SeatWarmerTempDisplay->Text = gcnew String(tempdisplay.c_str());
 }
 private: System::Void MedButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	LowButton->Enabled = true;
+	MedButton->Enabled = false;
+	HighButton->Enabled = true;
 	SeatWarmerSettingDisplay->Text = gcnew String("Medium");
 	string setting, tempdisplay;
 	MarshalString(SeatWarmerSettingDisplay->Text, setting);
@@ -997,6 +1055,9 @@ private: System::Void MedButton_Click(System::Object^ sender, System::EventArgs^
 	SeatWarmerTempDisplay->Text = gcnew String(tempdisplay.c_str());
 }
 private: System::Void HighButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	LowButton->Enabled = true;
+	MedButton->Enabled = true;
+	HighButton->Enabled = false;
 	SeatWarmerSettingDisplay->Text = gcnew String("High");
 	string setting, tempdisplay;
 	MarshalString(SeatWarmerSettingDisplay->Text, setting);
@@ -1011,18 +1072,24 @@ private: System::Void BackCamON_Click(System::Object^ sender, System::EventArgs^
 	string campow;
 	campow = camera.power(1);
 	BackUpCameraDisplay->Text = gcnew String(campow.c_str());
+	BackCamON->Enabled = false;
+	BackCamOff->Enabled = true;
 }
 private: System::Void BackCamOff_Click(System::Object^ sender, System::EventArgs^ e) {
 	backupCamera camera;
 	string campow;
 	campow = camera.power(2);
 	BackUpCameraDisplay->Text = gcnew String(campow.c_str());
+	BackCamOff->Enabled = false;
+	BackCamON->Enabled = true;
 }
 private: System::Void CruiseON_Click(System::Object^ sender, System::EventArgs^ e) {
 	string cruise;
 	cruiseControl cruise1;
 	cruise = cruise1.status(1); 
 	CruiseControlDisplay->Text = gcnew String(cruise.c_str()); 
+	CruiseON->Enabled = false;
+	CruiseOff->Enabled = true;
 }
 private: System::Void CruiseOff_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -1030,6 +1097,8 @@ private: System::Void CruiseOff_Click(System::Object^ sender, System::EventArgs^
 	cruiseControl cruise1;
 	cruise = cruise1.status(2);
 	CruiseControlDisplay->Text = gcnew String(cruise.c_str());
+	CruiseOff->Enabled = false;
+	CruiseON->Enabled = true;
 }
 };
 

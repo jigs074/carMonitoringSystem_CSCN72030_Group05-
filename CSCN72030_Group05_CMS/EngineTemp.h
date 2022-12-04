@@ -14,7 +14,9 @@ public:
 		random = random % 10 + 195;
 		return random;
 	}
-
+	int getengtemp() {
+		return this->engtemp;
+	}
 	void tempchange(int engtemp) {
 		int random = 0;
 		random = rand();
