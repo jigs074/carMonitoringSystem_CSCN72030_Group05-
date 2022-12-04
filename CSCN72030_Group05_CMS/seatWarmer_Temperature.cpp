@@ -19,7 +19,7 @@ string seatWarmer::setLevel(string level) {
 
 	if (level == "low" || level == "LOW" || level == "Low") {
 
-		file.open("lowRange.txt", ios::in);
+		file.open("../lowRange.txt", ios::in);
 		if (file.is_open()) {
 			srand(time(NULL));
 			int random = rand() % 10;
@@ -28,13 +28,16 @@ string seatWarmer::setLevel(string level) {
 			}
 
 		}
-		str = line;
-		return str;
+
+		if (line.compare("") > 0) {
+			str = line;
+		}
+		//return str;
 		//return line;
 	}
 	if (level == "medium" || level == "MEDIUM" || level == "Medium") {
 
-		file.open("mediumRange.txt", ios::in);
+		file.open("../mediumRange.txt", ios::in);
 		if (file.is_open()) {
 			srand(time(NULL));
 			int random = rand() % 10;
@@ -42,11 +45,14 @@ string seatWarmer::setLevel(string level) {
 				getline(file, line);
 			}
 		}
-		return line;
+		if (line.compare("") > 0) {
+			str = line;
+		}
+		//return line;
 	}
 	if (level == "High" || level == "HIGH" || level == "High") {
 
-		file.open("highRange.txt", ios::in);
+		file.open("../highRange.txt", ios::in);
 		if (file.is_open()) {
 			srand(time(NULL));
 			int random = rand() % 10;
@@ -54,10 +60,12 @@ string seatWarmer::setLevel(string level) {
 				getline(file, line);
 			}
 		}
-		return line;
+		str = line;
+		//return line;
 
 	}
 	file.close();
+	return str;
 
 }
 
@@ -67,9 +75,10 @@ string seatWarmer::setLevel(string level) {
 string carTemperature::autoTemperature() {
 	fstream file;
 	string line;
-
-
-	file.open("outsideTemperature.txt", ios::in);
+	int outsideTemperature = 0;
+	int TEMP = 5;
+	int carTemperature = 0;
+	file.open("../outsideTemperature.txt", ios::in);
 	srand(time(NULL));
 
 
@@ -81,20 +90,22 @@ string carTemperature::autoTemperature() {
 
 		}
 	}
+	if (line.compare("") > 0) {
+		outsideTemperature = stoi(line);
+		carTemperature = stoi(line) - TEMP;
+	}
 
-	int outsideTemperature = stoi(line);
-
-	int TEMP = 5;
 
 
-	int carTemperature = stoi(line) - TEMP;
+
 
 
 	string finalcarTemp = to_string(carTemperature);
-	return finalcarTemp;
+
 
 
 	file.close();
+	return finalcarTemp;
 
 }
 

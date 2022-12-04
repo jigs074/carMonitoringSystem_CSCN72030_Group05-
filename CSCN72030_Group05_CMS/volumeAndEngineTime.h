@@ -22,4 +22,4 @@ public:
 	void setaverageEngineTime(string duration);
 	string getAverageEngineTime();
 	bool alertEngineTime(string averageEngineTime);
-}; 
+};

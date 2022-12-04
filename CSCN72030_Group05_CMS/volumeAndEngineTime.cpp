@@ -17,7 +17,7 @@ string Volume::incrementVolume(string currentVolume)
 {
 	string line;
 	ifstream file;
-	file.open("volumeLevels.txt", ios::in);
+	file.open("../volumeLevels.txt", ios::in);
 	while (!file.eof())
 	{
 		getline(file, line);
@@ -34,11 +34,11 @@ string Volume::incrementVolume(string currentVolume)
 
 string Volume::decrementVolume(string currentVolume)
 {
-	string line;
+	string line, vol;
 	fstream file;
 	fstream temp;
-	file.open("volumeLevels.txt", ios::in);
-	temp.open("temp.txt", ios::out);
+	file.open("../volumeLevels.txt", ios::in);
+	temp.open("../temp.txt", ios::out);
 
 	while (getline(file, line))
 	{
@@ -51,13 +51,17 @@ string Volume::decrementVolume(string currentVolume)
 			break;
 		}
 	}
-
+	temp.close();
+	temp.open("../temp.txt", ios::in);
 	while (!temp.eof())
 	{
 		getline(temp, line);
+		if (line.compare("") > 0) {
+			vol = line;
+		}
 	}
 
-	return line;
+	return vol;
 
 	file.close();
 	temp.close();
@@ -73,7 +77,7 @@ void engineTime::setEngineTime(string engineTime)
 		//float c_end = clock();
 		//engineTime = c_end - c_start; //This is the engine time usage
 	fstream file;
-	file.open("engineTime.txt", ios::out);
+	file.open("../engineTime.txt", ios::out);
 	if (file.is_open())
 	{
 		file << engineTime << endl;
@@ -84,14 +88,18 @@ void engineTime::setEngineTime(string engineTime)
 string engineTime::getEngineTime()
 {
 	fstream file;
-	string line;
-	file.open("engineTime.txt", ios::in);
+	string line, engtime;
+	file.open("../engineTime.txt", ios::in);
 	while (!file.eof())
 	{
 		getline(file, line);
+		if (line.compare("") > 0) {
+			engtime = line;
+		}
 	}
-	return line;
+
 	file.close();
+	return engtime;
 
 }
 
@@ -99,7 +107,7 @@ string engineTime::getAverageEngineTime()
 {
 	fstream file;
 	string line, result;
-	file.open("Duration.txt", ios::in);
+	file.open("../Duration.txt", ios::in);
 	int total = 0;
 	double average, sum = 0;
 	while (getline(file, line))
@@ -118,7 +126,7 @@ void engineTime::setaverageEngineTime(string duration)
 {
 	string line;
 	fstream file;
-	file.open("Duration.txt", ios::app);
+	file.open("../Duration.txt", ios::app);
 	file << duration << endl;
 	file.close();
 }
