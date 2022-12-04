@@ -48,6 +48,9 @@ string seatWarmer::setLevel(string level) {
 		if (line.compare("") > 0) {
 			str = line;
 		}
+		else if (str.compare("") == 0) {
+			str = "11";
+		}
 		//return line;
 	}
 	if (level == "High" || level == "HIGH" || level == "High") {
@@ -60,10 +63,17 @@ string seatWarmer::setLevel(string level) {
 				getline(file, line);
 			}
 		}
-		str = line;
+		if (line.compare("") > 0) {
+			str = line;
+		}
+		else if (str.compare("") == 0) {
+			str = "21";
+		}
+		//str = line;
 		//return line;
 
 	}
+	
 	file.close();
 	return str;
 
