@@ -1007,14 +1007,17 @@ namespace CppCLRWinFormsProject {
 		VolLBL->Text = gcnew String("0");
 		//CarTempDisplay->Text = gcnew String("0");
 		//label3->Hide();
-		temptextbox->Hide();
-		manualtemplabel->Hide();
+	
 		//EngineTimeDisplay->Show();
 		TimerDisplay->Text = gcnew String("0");
-		EngineTempAlertDisplay->Hide();
+	
 		//TimerDisplay->Hide();
 		//EngineOFFButton->Enabled = false;
 		//EngineONButton->PerformClick();
+		EngineOFFButton->Enabled = false;
+		temptextbox->Hide();
+		manualtemplabel->Hide();
+		EngineTempAlertDisplay->Hide();
 		BackCamON->PerformClick();
 		CruiseON->PerformClick();
 		LowButton->PerformClick();
