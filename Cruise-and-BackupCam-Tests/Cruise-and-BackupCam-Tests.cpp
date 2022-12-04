@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "..\\CSCN72030_Group05_CMS\Cruise-and-BackupCam.h"
+#include "..\\CSCN72030_Group05_CMS\Cruise-and-BackupCam.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

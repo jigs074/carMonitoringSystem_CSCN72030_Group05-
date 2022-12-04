@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cruise-and-BackupCam.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="seatWarmer_Temperature.cpp" />
     <ClCompile Include="volumeAndEngineTime.cpp" />
   </ItemGroup>
