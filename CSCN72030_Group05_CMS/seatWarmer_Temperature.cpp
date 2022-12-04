@@ -28,12 +28,9 @@ string seatWarmer::setLevel(string level) {
 			}
 
 		}
-
 		if (line.compare("") > 0) {
 			str = line;
 		}
-		//return str;
-		//return line;
 	}
 	if (level == "medium" || level == "MEDIUM" || level == "Medium") {
 
@@ -51,7 +48,6 @@ string seatWarmer::setLevel(string level) {
 		else if (str.compare("") == 0) {
 			str = "11";
 		}
-		//return line;
 	}
 	if (level == "High" || level == "HIGH" || level == "High") {
 
@@ -69,9 +65,6 @@ string seatWarmer::setLevel(string level) {
 		else if (str.compare("") == 0) {
 			str = "21";
 		}
-		//str = line;
-		//return line;
-
 	}
 	
 	file.close();

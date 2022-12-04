@@ -24,7 +24,6 @@ string Volume::incrementVolume(string currentVolume)
 		if (line == currentVolume)
 		{
 			getline(file, line);
-			//cout << line;
 			return line;
 		}
 	}
@@ -70,12 +69,6 @@ string Volume::decrementVolume(string currentVolume)
 
 void engineTime::setEngineTime(string engineTime)
 {
-	//clock function to start timer - need buttonClick event for this to work
-		//float c_start = clock();
-		//......
-		//......
-		//float c_end = clock();
-		//engineTime = c_end - c_start; //This is the engine time usage
 	fstream file;
 	file.open("../engineTime.txt", ios::out);
 	if (file.is_open())
@@ -97,7 +90,6 @@ string engineTime::getEngineTime()
 			engtime = line;
 		}
 	}
-
 	file.close();
 	return engtime;
 
@@ -115,7 +107,6 @@ string engineTime::getAverageEngineTime()
 		sum += stod(line);
 		total++;
 	}
-
 	average = sum / total;
 	result = to_string(average);
 	file.close();

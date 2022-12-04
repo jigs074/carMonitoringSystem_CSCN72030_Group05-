@@ -759,11 +759,8 @@ namespace CppCLRWinFormsProject {
 #pragma endregion
 
 	private: System::Void displayCurrentVolume_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-
 	}
 	private: System::Void volumeDownButton_Click(System::Object^ sender, System::EventArgs^ e) {
-
-
 	}
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -778,7 +775,6 @@ namespace CppCLRWinFormsProject {
 		num = stoi(engtmp);
 		eng1.tempchange(num);
 		engtmp = to_string(eng1.getengtemp());
-		//EngineTempDisplay->Text = gcnew String(engtmp.c_str());
 		MarshalString(TimerDisplay->Text, l);
 
 		time = stoi(l);
@@ -791,19 +787,7 @@ namespace CppCLRWinFormsProject {
 			EngineTempAlertDisplay->Show();
 			EngineTempAlertDisplay->Text = gcnew String("ENGINE TOO HOT!");
 			EngineOFFButton->PerformClick();
-			//EngineTempAlertDisplay->Hide();
 		}
-
-		//if (time % 10 == 0) {
-			//temp = stoi(engtmp);
-			//temp++;
-			//engtmp = to_string(temp);
-			//EngineTempDisplay->Text = gcnew String(engtmp.c_str());
-		//}
-
-		//open file write to file
-		//int num = label2->Text
-		//label2->Text = gcnew String(num.ToString());
 	}
 	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -814,11 +798,7 @@ namespace CppCLRWinFormsProject {
 		string curVol, vol;
 		Volume v;
 		MarshalString(VolLBL->Text, curVol);
-		//num = stoi(l);
-		//num++;
-		//l = to_string(num);
 		vol = v.incrementVolume(curVol);
-		//VolLBL->Text = gcnew String(vol.c_str());
 		if (vol.compare("") > 0) {
 			VolLBL->Text = gcnew String(vol.c_str());
 		}
@@ -828,17 +808,11 @@ namespace CppCLRWinFormsProject {
 		string curVol, vol;
 		Volume v;
 		MarshalString(VolLBL->Text, curVol);
-		//num = stoi(l);
-		//num++;
-		//l = to_string(num);
 		vol = v.decrementVolume(curVol);
 		if (vol.compare("") > 0) {
 			VolLBL->Text = gcnew String(vol.c_str());
 		}
-		//VolLBL->Text = gcnew String(vol.c_str());
-
 	}
-
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 		carTemperature ct;
 		string c;
@@ -847,8 +821,6 @@ namespace CppCLRWinFormsProject {
 		CarTempDisplay->Text = gcnew String(c.c_str());
 
 	}
-
-
 	private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
 	}
 
@@ -862,8 +834,6 @@ namespace CppCLRWinFormsProject {
 	private: System::Void temptextbox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
 	}
-
-
 	private: System::Void temptextbox_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
 		string l;
 		if (e->KeyCode == Keys::Enter) {
@@ -889,9 +859,6 @@ namespace CppCLRWinFormsProject {
 	private: System::Void BackButton_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	}
-
-
-
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void EngineONButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -941,23 +908,11 @@ namespace CppCLRWinFormsProject {
 		num++;
 		engtime = to_string(num);
 		EngineTimeDisplay->Text = gcnew String(engtime.c_str());
-
-
-		/*
-			MarshalString(DurTimeDisplay->Text, durtime);
-			durtimenum = stoptime - starttime;
-			durtime = to_string(durtimenum);
-			DurTimeDisplay->Text = gcnew String(durtime.c_str());
-
-			engt.setaverageEngineTime(durtime);
-			*/
 	}
 
 	private: System::Void Form1_Load_1(System::Object^ sender, System::EventArgs^ e) {
-		fstream file, bckcamfile;
-		fstream engtimefile;
-		string line, cam, heat, car, cruise, speed, engtempstring;
-		string engtimestring;
+		fstream file, bckcamfile, engtimefile;
+		string line, cam, heat, car, cruise, speed, engtempstring, engtimestring;
 		backupCamera cam1;
 		cruiseControl cruise1;
 		seatWarmer seat1;
@@ -965,27 +920,6 @@ namespace CppCLRWinFormsProject {
 		engineTime engt;
 		ENGINETEMP eng1;
 		int engtemp;
-		file.open("../Engine_Temp.txt");
-		//engtimefile.open("../test.txt"); 
-		//seat1.setLevel("3");
-		//MarshalString(Directory::GetCurrentDirectory(),filepath);
-		//MarshalString(Directory::GetCurrentDirectory(),filepath);
-		if (file.is_open()) {
-			while (!file.eof()) {
-				if (getline(file, line)) {
-					break;
-				}
-			}
-		}
-		/*
-		if (engtimefile.is_open()) {
-			while (!engtimefile.eof()) {
-				if (getline(engtimefile, engtimestring)) {
-					break;
-				}
-			}
-		}
-		*/
 
 		heat = seat1.setLevel("Low");
 		car = ct.autoTemperature();
@@ -997,35 +931,23 @@ namespace CppCLRWinFormsProject {
 
 		EngineTempDisplay->Text = gcnew String(engtempstring.c_str());
 		EngineTimeDisplay->Text = gcnew String(engtimestring.c_str());
-		//BackUpCameraDisplay->Text = gcnew String(cam.c_str()); 
 		CarTempDisplay->Text = gcnew String(car.c_str());
-		//	CruiseControlDisplay->Text = gcnew String(cruise.c_str());
-			//SeatWarmerPositonDisplay->Text = gcnew String("Front");
-			//SeatWarmerSettingDisplay->Text = gcnew String("Low");
-			//EngineTempDisplay->Text = gcnew String(line.c_str());
 		TimerDisplay->Text = gcnew String("0");
 		VolLBL->Text = gcnew String("0");
-		//CarTempDisplay->Text = gcnew String("0");
-		//label3->Hide();
-	
-		//EngineTimeDisplay->Show();
 		TimerDisplay->Text = gcnew String("0");
 	
-		//TimerDisplay->Hide();
-		//EngineOFFButton->Enabled = false;
-		//EngineONButton->PerformClick();
 		EngineOFFButton->Enabled = false;
+
 		temptextbox->Hide();
 		manualtemplabel->Hide();
 		EngineTempAlertDisplay->Hide();
+		TimerDisplay->Hide();
+
 		BackCamON->PerformClick();
 		CruiseON->PerformClick();
 		LowButton->PerformClick();
 		FrontButton->PerformClick();
 	}
-
-
-
 	private: System::Void FrontButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		FrontButton->Enabled = false;
 		RearButton->Enabled = true;
@@ -1069,8 +991,6 @@ namespace CppCLRWinFormsProject {
 		tempdisplay = seat.setLevel(setting);
 		SeatWarmerTempDisplay->Text = gcnew String(tempdisplay.c_str());
 	}
-
-
 	private: System::Void BackCamON_Click(System::Object^ sender, System::EventArgs^ e) {
 		backupCamera camera;
 		string campow;
@@ -1096,7 +1016,6 @@ namespace CppCLRWinFormsProject {
 		CruiseOff->Enabled = true;
 	}
 	private: System::Void CruiseOff_Click(System::Object^ sender, System::EventArgs^ e) {
-
 		string cruise;
 		cruiseControl cruise1;
 		cruise = cruise1.status(2);
