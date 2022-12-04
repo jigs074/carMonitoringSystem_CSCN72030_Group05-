@@ -88,14 +88,18 @@ void engineTime::setEngineTime(string engineTime)
 string engineTime::getEngineTime()
 {
 	fstream file;
-	string line;
+	string line,engtime;
 	file.open("../engineTime.txt", ios::in);
 	while (!file.eof())
 	{
 		getline(file, line);
+		if (line.compare("") > 0) {
+			engtime = line;
+		}
 	}
-	return line;
+
 	file.close();
+	return engtime;
 
 }
 

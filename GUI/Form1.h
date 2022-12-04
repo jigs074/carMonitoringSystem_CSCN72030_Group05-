@@ -628,7 +628,7 @@ namespace CppCLRWinFormsProject {
 			// AlertLabel
 			// 
 			this->AlertLabel->AutoSize = true;
-			this->AlertLabel->Location = System::Drawing::Point(43, 96);
+			this->AlertLabel->Location = System::Drawing::Point(6, 103);
 			this->AlertLabel->Name = L"AlertLabel";
 			this->AlertLabel->Size = System::Drawing::Size(28, 13);
 			this->AlertLabel->TabIndex = 48;
@@ -873,7 +873,8 @@ namespace CppCLRWinFormsProject {
 		timer1->Enabled = false;
 		timer2->Enabled = false;
 		string engtime;
-		string durtime;
+		string durtime,avgtime,alert;	
+		engineTime engt;
 		int durtimenum = 0;
 		MarshalString(EngineTimeDisplay->Text, engtime);
 		MarshalString(DurTimeDisplay->Text, durtime);
@@ -882,16 +883,36 @@ namespace CppCLRWinFormsProject {
 		durtime = to_string(durtimenum);
 		DurTimeDisplay->Text = gcnew String(durtime.c_str());
 		//avgtimenum = stoi(avgtime); 
+		engt.setEngineTime(engtime);
+		engt.setaverageEngineTime(durtime);
+		avgtime = engt.getAverageEngineTime();
 
+		AvgTimeDisplay->Text = gcnew String(avgtime.c_str());
+		if (engt.alertEngineTime(avgtime) == 1) {
+			AlertLabel->Text = gcnew String("Engine Alert!");
+		}
 	}
 	private: System::Void timer2_Tick_1(System::Object^ sender, System::EventArgs^ e) {
 		string engtime;
 		int num = 0;
+		string durtime;
+		engineTime engt;
+		int durtimenum = 0;
 		MarshalString(EngineTimeDisplay->Text, engtime);
 		num = stoi(engtime);
 		num++;
 		engtime = to_string(num);
 		EngineTimeDisplay->Text = gcnew String(engtime.c_str());
+
+	
+	/*
+		MarshalString(DurTimeDisplay->Text, durtime);
+		durtimenum = stoptime - starttime;
+		durtime = to_string(durtimenum);
+		DurTimeDisplay->Text = gcnew String(durtime.c_str());
+		
+		engt.setaverageEngineTime(durtime);
+		*/
 	}
 
 	private: System::Void Form1_Load_1(System::Object^ sender, System::EventArgs^ e) {

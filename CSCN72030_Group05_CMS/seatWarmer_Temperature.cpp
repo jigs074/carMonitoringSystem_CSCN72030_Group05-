@@ -29,7 +29,7 @@ string seatWarmer::setLevel(string level) {
 
 		}
 		str = line;
-		return str;
+		//return str;
 		//return line;
 	}
 	if (level == "medium" || level == "MEDIUM" || level == "Medium") {
@@ -42,7 +42,7 @@ string seatWarmer::setLevel(string level) {
 				getline(file, line);
 			}
 		}
-		return line;
+		//return line;
 	}
 	if (level == "High" || level == "HIGH" || level == "High") {
 
@@ -54,10 +54,11 @@ string seatWarmer::setLevel(string level) {
 				getline(file, line);
 			}
 		}
-		return line;
+		//return line;
 
 	}
 	file.close();
+	return str;
 
 }
 
@@ -67,8 +68,9 @@ string seatWarmer::setLevel(string level) {
 string carTemperature::autoTemperature() {
 	fstream file;
 	string line;
-
-
+	int outsideTemperature = 0;
+	int TEMP = 5;
+	int carTemperature = 0;
 	file.open("../outsideTemperature.txt", ios::in);
 	srand(time(NULL));
 
@@ -81,20 +83,22 @@ string carTemperature::autoTemperature() {
 
 		}
 	}
+	if (line.compare("") > 0) {
+		outsideTemperature = stoi(line);
+		carTemperature = stoi(line) - TEMP;
+	}
+	
 
-	int outsideTemperature = stoi(line);
 
-	int TEMP = 5;
-
-
-	int carTemperature = stoi(line) - TEMP;
+	
 
 
 	string finalcarTemp = to_string(carTemperature);
-	return finalcarTemp;
+	
 
 
 	file.close();
+	return finalcarTemp;
 
 }
 
